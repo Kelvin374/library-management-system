@@ -34,9 +34,9 @@ const books = [
 
 async function main() {
     const genreIds: Record<string, number> = {};
-    for (cont g of genres) {
+    for (const g of genres) {
         const genre = await prisma.genre.upsert({
-            where: { slug: genreIds.slug },
+            where: { slug: g.slug },
             update: {},
             create: g,
         });
@@ -58,7 +58,7 @@ async function main() {
         });
     }
 
-    console.log('Seeded ${genres.length} genres and ${books.length} books.');
+    console.log(`Seeded ${genres.length} genres and ${books.length} books.`);
 }
 
 main()
