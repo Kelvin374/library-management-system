@@ -10,7 +10,8 @@ const genres = [
 ];
 
 const books = [
-{ title: "Dune", author: "Frank Herbert", isbn: "9780441013593", genre: "science-fiction" },
+  //Science Fiction
+  { title: "Dune", author: "Frank Herbert", isbn: "9780441013593", genre: "science-fiction" },
   { title: "Neuromancer", author: "William Gibson", isbn: "9780441569595", genre: "science-fiction" },
   { title: "The Left Hand of Darkness", author: "Ursula K. Le Guin", isbn: "9780441478125", genre: "science-fiction" },
   { title: "Foundation", author: "Isaac Asimov", isbn: "9780553293357", genre: "science-fiction" },
