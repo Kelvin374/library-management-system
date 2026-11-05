@@ -58,28 +58,7 @@ async function main() {
         });
     }
 
-      // Sample user and reviews
-  const user = await prisma.user.upsert({
-    where: { email: "reader@example.com" },
-    update: {},
-    create: { email: "reader@example.com", name: "Sample Reader" },
-  });
-
-  const sampleBooks = await prisma.book.findMany({ take: 3, orderBy: { id: "asc" } });
-  for (const [i, book] of sampleBooks.entries()) {
-    await prisma.review.upsert({
-      where: { userId_bookId: { userId: user.id, bookId: book.id } },
-      update: {},
-      create: {
-        userId: user.id,
-        bookId: book.id,
-        rating: 5 - i,
-        comment: "Seeded sample review.",
-      },
-    });
-  }
-
-    console.log(`Seeded ${genres.length} genres, ${books.length} books, and ${sampleBooks.length} reviews.`);
+    console.log('Seeded ${genres.length} genres and ${books.length} books.');
 }
 
 main()
