@@ -18,17 +18,33 @@ model User {
   name      String
   role      Role     @default(PATRON)
   createdAt DateTime @default(now())
+  reviews   Review[]
 }
 
 model Book {
-  id              Int    @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   title           String
   author          String
-  isbn            String @unique
-  totalCopies     Int    @default(1)
-  availableCopies Int    @default(1)
+  isbn            String   @unique
+  totalCopies     Int      @default(1)
+  availableCopies Int      @default(1)
   genreId         Int
-  genre           Genre  @relation(fields: [genreId], references: [id])
+  genre           Genre    @relation(fields: [genreId], references: [id])
+  reviews         Review[]
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+  bookId    Int
+  userId    Int
+  book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, bookId])
+  @@index([bookId])
 }
 
 model Genre {
